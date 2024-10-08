@@ -1,7 +1,8 @@
 :root {
-    --container-padding: 4vw;
+    --container-padding: 1.5rem;
     --font-family-heading: "Poppins", sans-serif;
     --font-family-body: "Poppins", sans-serif;
+    --stacked-component-sm: 64px;
     --stacked-component: 96px;
     --card-padding: 10px;
     --horizontal-gap: clamp(1rem, 2vw, 3rem);;
@@ -42,7 +43,11 @@
     --radius-md: 12px;
     --radius-lg: 16px;
 
+    @media (min-width: 600px) {
+        --container-padding: 4vw;
+    }
     @media (min-width: 1000px) {
+        --stacked-component-sm: 80px;
         --stacked-component: 180px;
         --card-padding: 25px;
 
@@ -107,6 +112,11 @@ h6 {
     }
 }
 
+h2 {
+    font-size: clamp(3rem, 5.7vw, 112px);
+    /* 96px @ 1680px */
+}
+
 h3 {
     font-size: clamp(2rem, 4.5vw, 6rem);
 }
@@ -114,6 +124,12 @@ h3 {
 h4 {
     font-size: 1.5rem;
 }
+
+.heading-half {
+    width: 13ch;
+    margin-bottom: var(--stacked-component-sm);
+}
+
 
 p {
     margin-bottom: 1.5rem;
@@ -126,12 +142,8 @@ p {
 
     &.large {
         font-size: clamp(1rem, 1.2vw, 2rem);
-
     }
 }
-
-
-
 
 .container {
     padding-left: var(--container-padding);
@@ -147,7 +159,6 @@ p {
     padding-right: calc(var(--container-padding) * 2);
     }
 }
-
 
 .container-sm,
 .container-md {
@@ -844,26 +855,34 @@ button,
 }
 
 .clients {
+    overflow: hidden;
 }
+
+.clients-list-container-2 {
+    display: flex;
+    justify-content: flex-end;
+}
+
 
 .clients-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
     display: flex;
-    flex-wrap: wrap;
     gap: 0;
+    width: fit-content;
 
 
     li {
-        width: 50%;
+        width: 250px;
+        flex-shrink: 0;
 
-        @media (min-width: 800px) {
-            width: 33.3333%;
-        }
-        @media (min-width: 1200px) {
-            width: 25%;
-        }
+        //@media (min-width: 800px) {
+        //    width: 33.3333%;
+        //}
+        //@media (min-width: 1200px) {
+        //    width: 25%;
+        //}
 
         img {
             display: block;
@@ -883,17 +902,18 @@ button,
 
 
 .video-container {
+    width: 100%;
     background: var(--transparent-dark);
     backdrop-filter: blur(var(--blur-radius));
     border-radius: var(--radius-md);
-    padding-top: var(--container-padding);
-    padding-bottom: var(--container-padding);
+    padding: var(--container-padding);
     display: flex;
     flex-direction: column;
     gap: var(--vertical-gap);
 
     video {
         aspect-ratio: 16/9;
+        width: 100%;
     }
 }
 

@@ -21,6 +21,20 @@
     }
   }
 
+  let windowWidth = window.innerWidth; // Initial window width
+  let resizeTimeout;
+
+  window.addEventListener('resize', () => {
+    // Clear any existing timeout when resizing starts
+    clearTimeout(resizeTimeout);
+
+    // Set a timeout to update the window width after resizing is done
+    resizeTimeout = setTimeout(() => {
+      windowWidth = window.innerWidth;
+      console.log(`Window width updated: ${windowWidth}px`);
+    }, 200); // Delay of 200ms (adjust as needed)
+  });
+
   // Run this on page load to check localStorage
   checkClassFromLocalStorage();
 
@@ -97,16 +111,16 @@
 
 
 
-    const positionStatement = new gsap.timeline({
-      scrollTrigger: {
-        trigger: '#statement',
-        start: "top top",
-        end: "bottom 70%",
-        toggleClass: "wordmark-active",
-        scrub: 1,
-        markers: false,
-      }
-    });
+  const positionStatement = new gsap.timeline({
+    scrollTrigger: {
+      trigger: '#statement',
+      start: "top top",
+      end: "bottom 70%",
+      toggleClass: "wordmark-active",
+      scrub: 1,
+      markers: false,
+    }
+  });
 
   positionStatement.from('#wordmark-wrapper', {
     scale: 1.25,
@@ -122,16 +136,63 @@
     ease: "ease-out"
   })
 
-    /*positionStatement.from('#position-statement', {
-      opacity: 0,
-      yPercent: 25,
-      ease: "ease-out"
-    });*/
+  const videoContainer = new gsap.timeline({
+    scrollTrigger: {
+      trigger: '#video-section',
+      start: "top bottom",
+      end: "bottom bottom",
+      scrub: 1,
+      markers: false,
+    }
+  });
 
+  videoContainer.from('#video-section', {
+    scale: .8,
+    ease: "ease-out"
+  })
 
-
+  console.log('client list', document.querySelector('.clients-list').offsetWidth)
 
   console.log('sizzlewidth', document.querySelector('.sizzle-wrapper').offsetWidth)
+
+
+
+
+  const clientListWidth = document.getElementById('clients-list1').offsetWidth;
+
+  console.log('client list offset', (clientListWidth - windowWidth + (windowWidth * .04)) * -1);
+
+  const clientsAnimation1 = new gsap.timeline({
+    scrollTrigger: {
+      trigger: '#clients-list1',
+      start: "50% bottom",
+      end: "bottom 250px",
+      scrub: 1,
+      markers: false,
+    }
+  });
+
+  clientsAnimation1.to('#clients-list1', {
+    x: (clientListWidth - windowWidth + (windowWidth * .08)) * -1,
+    ease: "linear"
+  });
+
+  const clientsAnimation2 = new gsap.timeline({
+    scrollTrigger: {
+      trigger: '#clients-list2',
+      start: "50% bottom",
+      end: "bottom 250px",
+      scrub: 1,
+      markers: false,
+    }
+  });
+
+  clientsAnimation2.to('#clients-list2', {
+    x: clientListWidth - windowWidth + (windowWidth * .08),
+    ease: "linear"
+  });
+
+
 
   const sizzleCarousel = new gsap.timeline({
     scrollTrigger: {
@@ -153,25 +214,25 @@
 
 
 
-  const $slideInCards = document.querySelectorAll(".slide-in-card");
-
-  $slideInCards.forEach((element) => {
-    const slideInElement = new gsap.timeline({
-      scrollTrigger: {
-        trigger: element,
-        start: "top 90%",
-        end: "bottom bottom",
-        scrub: 1,
-        markers: false
-      }
-    });
-
-    slideInElement.from(element, {
-      opacity: 0,
-      yPercent: 25,
-      ease: "ease-out"
-    });
-  });
+  // const $slideInCards = document.querySelectorAll(".slide-in-card");
+  //
+  // $slideInCards.forEach((element) => {
+  //   const slideInElement = new gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: element,
+  //       start: "top 90%",
+  //       end: "bottom bottom",
+  //       scrub: 1,
+  //       markers: false
+  //     }
+  //   });
+  //
+  //   slideInElement.from(element, {
+  //     opacity: 0,
+  //     yPercent: 25,
+  //     ease: "ease-out"
+  //   });
+  // });
 
 
 })();
