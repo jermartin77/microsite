@@ -869,24 +869,38 @@ button,
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 0;
-    width: fit-content;
+    flex-wrap: wrap;
 
 
     li {
-        width: 250px;
+        width: 33%;
         flex-shrink: 0;
+        padding: clamp(.5rem, 1.5vw, 1.5rem);
 
-        //@media (min-width: 800px) {
-        //    width: 33.3333%;
-        //}
-        //@media (min-width: 1200px) {
-        //    width: 25%;
-        //}
+
+        @media (min-width: 600px) {
+            width: 25%;
+        }
+        @media (min-width: 900px) {
+            width: 20%;
+        }
+
+        @media (min-width: 1200px) {
+            width: 20%;
+        }
+
+
+        @media (min-width: 1440px) {
+            width: 16.66%;
+        }
+
+        @media (min-width: 1900px) {
+            width: 12.5%;
+        }
 
         img {
             display: block;
-            aspect-ratio: 1/1;
+            aspect-ratio: 4/3;
         }
     }
 }
