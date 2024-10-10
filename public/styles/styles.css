@@ -36,6 +36,7 @@
     --linear-gradient: linear-gradient(142deg, rgba(42,84,98,1) 0%, rgba(17,54,65,1) 50%, rgba(7,29,36,1) 100%);
 
     --transparent-dark: rgba(4,16,20, .4);
+    --transparent-dark-hover: rgba(4,16,20, .8);
     --transparent-light: rgb(90,135,147, .3);;
     --blur-radius: 5px;
 
@@ -875,20 +876,15 @@ button,
     li {
         width: 33%;
         flex-shrink: 0;
-        padding: clamp(.5rem, 1.5vw, 1.5rem);
-
+        padding: clamp(.5rem, 1.5vw, 2rem);
 
         @media (min-width: 600px) {
             width: 25%;
         }
+
         @media (min-width: 900px) {
             width: 20%;
         }
-
-        @media (min-width: 1200px) {
-            width: 20%;
-        }
-
 
         @media (min-width: 1440px) {
             width: 16.66%;
@@ -897,11 +893,58 @@ button,
         @media (min-width: 1900px) {
             width: 12.5%;
         }
+    }
+}
 
-        img {
-            display: block;
-            aspect-ratio: 4/3;
+
+.logo-position {
+    position: relative;
+    aspect-ratio: 4/3;
+
+    img {
+        display: block;
+        top: 0;
+        left: 0;
+        transition: all .5s ease-out;
+
+        &:first-child {
+            opacity: 1;
+            position: relative;
+            z-index: 1;
+
+
+            .active-primary &  {
+                opacity: 1;
+                transform: translateY(0);
+                z-index: 1;
+                transition-delay: .25s;
+            }
+
+            .active-secondary &  {
+                opacity: 0;
+                transform: translateY(-25%);
+                z-index: 0;
+            }
         }
+
+        &:last-child {
+            opacity: 0;
+            position: absolute;
+
+            .active-primary &  {
+                opacity: 0;
+                transform: translateY(25%);
+                z-index: 0;
+            }
+
+            .active-secondary &  {
+                opacity: 1;
+                transform: translateY(0);
+                transition-delay: .25s;
+                z-index: 1;
+            }
+        }
+
     }
 }
 
@@ -924,14 +967,43 @@ button,
     display: flex;
     flex-direction: column;
     gap: var(--vertical-gap);
+    position: relative;
+    cursor: pointer;
 
     video {
         aspect-ratio: 16/9;
         width: 100%;
+        border-radius: 12px;
     }
 }
 
+.play-icon-wrapper {
+    width: 5%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--transparent-dark);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    transition: background-color .3s ease-out;
 
+    &.hidden {
+        display: none;
+    }
+
+    .video-container:hover & {
+        background-color: var(--transparent-dark-hover);
+    }
+}
+
+.video-play-icon {
+    width: 40%;
+    padding-left: 5%;
+}
 
 .benefits-stack {
     padding: 0;

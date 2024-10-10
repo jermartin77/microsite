@@ -1,6 +1,24 @@
 
 (function() {
 
+  gsap.registerPlugin(ScrollTrigger);
+
+
+  // setting a var for the window size if we need it
+  let windowWidth = window.innerWidth; // Initial window width
+  let resizeTimeout;
+
+  window.addEventListener('resize', () => {
+    // Clear any existing timeout when resizing starts
+    clearTimeout(resizeTimeout);
+
+    // Set a timeout to update the window width after resizing is done
+    resizeTimeout = setTimeout(() => {
+      windowWidth = window.innerWidth;
+      console.log(`Window width updated: ${windowWidth}px`);
+    }, 200);
+  });
+
   // start the intro animation
   const t = setTimeout(()=> {
     document.querySelector('body').classList.add('start')
@@ -21,21 +39,7 @@
     }
   }
 
-  let windowWidth = window.innerWidth; // Initial window width
-  let resizeTimeout;
-
-  window.addEventListener('resize', () => {
-    // Clear any existing timeout when resizing starts
-    clearTimeout(resizeTimeout);
-
-    // Set a timeout to update the window width after resizing is done
-    resizeTimeout = setTimeout(() => {
-      windowWidth = window.innerWidth;
-      console.log(`Window width updated: ${windowWidth}px`);
-    }, 200); // Delay of 200ms (adjust as needed)
-  });
-
-  // Run this on page load to check localStorage
+  // Run this on page load to check localStorage for a language if it is set
   checkClassFromLocalStorage();
 
   const langLinks = document.querySelectorAll('.lang-link');
@@ -49,11 +53,44 @@
   });
 
 
+  // Video actions
+  const introVideo = document.getElementById('intro-video');
+  const playIcon = document.getElementById('play-icon');
+
+  introVideo.addEventListener('click', function (event) {
+    playIcon.classList.add('hidden');
+    if (introVideo.paused) {
+      introVideo.controls = true;
+      setTimeout(()=> {
+
+        introVideo.play();
+      }, 50) // Show controls when playing
+    }
+  });
+
+  // reset the state of the video once it has ended.
+  introVideo.addEventListener('ended', () => {
+    playIcon.classList.remove('hidden')
+    introVideo.controls = false;  // Hide controls after the video ends
+    introVideo.load();  // This resets the video to the initial state and shows the poster
+  });
+
+
+  // intersection observer pauses the video when it's out of the viewport
+  const videoObserver = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting && !introVideo.paused) {
+      introVideo.pause();
+    }
+  });
+
+  videoObserver.observe(introVideo);
+
+
   // intersection observer that toggles the navigation
   const intro = document.getElementById('intro-section');
   const navigation = document.getElementById('navigation');
 
-  const observer = new IntersectionObserver(([entry]) => {
+  const introObserver = new IntersectionObserver(([entry]) => {
     if (entry.isIntersecting) {
       navigation.classList.add('nav-hidden');
     } else {
@@ -61,13 +98,9 @@
     }
   });
 
-  observer.observe(intro);
+  introObserver.observe(introObserver);
 
-  // Animations
-
-
-  gsap.registerPlugin(ScrollTrigger);
-
+  // GSAP Animations
   const introFadeout = new gsap.timeline({
     scrollTrigger: {
       trigger: '#intro-section',
@@ -108,9 +141,6 @@
     ease: 'ease-out'
   })*/
 
-
-
-
   const positionStatement = new gsap.timeline({
     scrollTrigger: {
       trigger: '#statement',
@@ -136,6 +166,7 @@
     ease: "ease-out"
   })
 
+  // animate the video in
   const videoContainer = new gsap.timeline({
     scrollTrigger: {
       trigger: '#video-section',
@@ -151,48 +182,33 @@
     ease: "ease-out"
   })
 
-  console.log('client list', document.querySelector('.clients-list').offsetWidth)
 
+  // animate and swap the client images
+  const $clientsList = document.getElementById('clients-list');
+
+  const clientLogosSwap = new gsap.timeline({
+    scrollTrigger: {
+      trigger: '#clients-list',
+      start: "top bottom",
+      end: "bottom top",
+      scrub: 1,
+      markers: false,
+      onUpdate: (self) => {
+        if (self.progress > 0.5) {
+          $clientsList.classList.add('active-secondary');
+          $clientsList.classList.remove('active-primary');
+
+        } else {
+          $clientsList.classList.add('active-primary');
+          $clientsList.classList.remove('active-secondary');
+        }
+      }
+    }
+  });
+
+
+  // the overflow animation for the clients
   console.log('sizzlewidth', document.querySelector('.sizzle-wrapper').offsetWidth)
-
-
-
-
-  const clientListWidth = document.getElementById('clients-list1').offsetWidth;
-
-  console.log('client list offset', (clientListWidth - windowWidth + (windowWidth * .04)) * -1);
-
-  const clientsAnimation1 = new gsap.timeline({
-    scrollTrigger: {
-      trigger: '#clients-list1',
-      start: "50% bottom",
-      end: "bottom 250px",
-      scrub: 1,
-      markers: false,
-    }
-  });
-
-  clientsAnimation1.to('#clients-list1', {
-    x: (clientListWidth - windowWidth + (windowWidth * .08)) * -1,
-    ease: "linear"
-  });
-
-  const clientsAnimation2 = new gsap.timeline({
-    scrollTrigger: {
-      trigger: '#clients-list2',
-      start: "50% bottom",
-      end: "bottom 250px",
-      scrub: 1,
-      markers: false,
-    }
-  });
-
-  clientsAnimation2.to('#clients-list2', {
-    x: clientListWidth - windowWidth + (windowWidth * .08),
-    ease: "linear"
-  });
-
-
 
   const sizzleCarousel = new gsap.timeline({
     scrollTrigger: {
@@ -213,26 +229,26 @@
 
 
 
+  // a reusable animation for fade/sliding in cards
+  const $slideInCards = document.querySelectorAll(".slide-in-card");
 
-  // const $slideInCards = document.querySelectorAll(".slide-in-card");
-  //
-  // $slideInCards.forEach((element) => {
-  //   const slideInElement = new gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: element,
-  //       start: "top 90%",
-  //       end: "bottom bottom",
-  //       scrub: 1,
-  //       markers: false
-  //     }
-  //   });
-  //
-  //   slideInElement.from(element, {
-  //     opacity: 0,
-  //     yPercent: 25,
-  //     ease: "ease-out"
-  //   });
-  // });
+  $slideInCards.forEach((element) => {
+    const slideInElement = new gsap.timeline({
+      scrollTrigger: {
+        trigger: element,
+        start: "top 90%",
+        end: "bottom bottom",
+        scrub: 1,
+        markers: false
+      }
+    });
+
+    slideInElement.from(element, {
+      opacity: 0,
+      yPercent: 20,
+      ease: "ease-out"
+    });
+  });
 
 
 })();

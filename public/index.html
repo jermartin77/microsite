@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>O2 Commerce and ZaneRay</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -116,8 +117,9 @@
   </section>
   <section id="video-section" class="video-section container content stacked-component">
     <div class="video-container">
-    <video id="myVideo" width="1020" controls preload="metadata">
-      <source src="video/mastercraft-ui-video.mp4" type="video/mp4">
+      <div id="play-icon" class="play-icon-wrapper"><img src="images/play-icon.svg" id="video-play-icon" class="video-play-icon"></div>
+    <video id="intro-video" width="1600" poster="images/video-poster.jpg"  preload="metadata">
+      <source src="video/o2-zr-small.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <p class="large">Learn more about the merger from the Founders of O2 Commerce and ZaneRay: Charles Guimont & Henry Roberts</p>
@@ -125,36 +127,82 @@
   </section>
 
 
-  <section id="" class="clients stacked-component  content container">
+  <section id="clients" class="clients stacked-component  content container">
     <h2 class="heading-half"><span class="en"> You&#x2019re in <strong>Good</strong> Company</span><span class="fr">Vous êtes en <strong>bonne</strong> compagnie</span> </h2>
-    <ul id="clients-list" class="clients-list">
-      <li class="client slide-in-card"><img src="images/clients/yeti.svg" alt="Yeti Cycles"> </li>
-      <li class="client slide-in-card"><img src="images/clients/steelcase.svg" alt="Steelcase"> </li>
-      <li class="client slide-in-card "><img src="images/clients/mastercraft.svg" alt="MasterCraft"> </li>
-      <li class="client slide-in-card"><img src="images/clients/arcteryx.svg" alt="arctery'x"> </li>
-      <li class="client slide-in-card"><img src="images/clients/black-diamond.svg" alt="Black Diamond Equipment"> </li>
-      <li class="client slide-in-card"><img src="images/clients/five-below.svg" alt="Five Below"> </li>
-      <li class="client slide-in-card"><img src="images/clients/jackson-hole.svg" alt="Jackson Hole"> </li>
-      <li class="client slide-in-card"><img src="images/clients/air-liquide.svg" alt="Air Liquide"> </li>
-      <li class="client slide-in-card"><img src="images/clients/skullcandy.svg" alt="Skullcandy"> </li>
-      <li class="client slide-in-card"><img src="images/clients/casper.svg" alt="Casper"></li>
-      <li class="client slide-in-card"><img src="images/clients/patagonia.svg" alt="Patagonia"> </li>
-      <li class="client slide-in-card"><img src="images/clients/groupe-ch.png" alt="Groupe CH"> </li>
-      <li class="client slide-in-card"><img src="images/clients/orvis.svg" alt="Orvis"> </li>
-      <li class="client slide-in-card"><img src="images/clients/mec.svg" alt="Mountain Equipment Company"> </li>
-      <li class="client slide-in-card"><img src="images/clients/filson.svg" alt="C.C. Filson &amp; Co."> </li>
-      <li class="client slide-in-card"><img src="images/clients/auclair.svg" alt="Auclair"> </li>
-      <li class="client slide-in-card"><img src="images/clients/carhartt.svg" alt="Carhartt"> </li>
-      <li class="client slide-in-card"><img src="images/clients/cooper-vision.svg" alt="Cooper Vision"> </li>
-      <li class="client slide-in-card"><img src="images/clients/traeger.svg" alt="Traeger"> </li>
-      <li class="client slide-in-card"><img src="images/clients/abbvie.svg" alt="Abbvie"></li>
-      <li class="client slide-in-card"><img src="images/clients/buck.svg" alt="Buck Knives"></li>
-      <li class="client slide-in-card"><img src="images/clients/souris-mini.svg" alt="Souris Mini"></li>
-      <li class="client slide-in-card"><img src="images/clients/nixon.svg" alt="Nixon Watches & Accessories"></li>
-      <li class="client slide-in-card"><img src="images/clients/thrasio.svg" alt="Thrasio"></li>
-      <li class="client slide-in-card"><img src="images/clients/thor-industries.svg" alt="Thor Industries"></li>
-      <li class="client slide-in-card"><img src="images/clients/lands-end.svg" alt="Lands' End"></li>
-      </ul>
+    <ul id="clients-list" class="clients-list active-primary">
+      <li class="client slide-in-card client-primary">
+        <div class="logo-position">
+          <img src="images/clients/yeti.svg" alt="Yeti Cycles">
+          <img src="images/clients/orvis.svg" alt="Orvis">
+        </div>
+      </li>
+      <li class="client slide-in-card">
+        <div class="logo-position">
+          <img src="images/clients/steelcase.svg" alt="Steelcase">
+          <img src="images/clients/mec.svg" alt="Mountain Equipment Company">
+        </div>
+      </li>
+      <li class="client slide-in-card">
+        <div class="logo-position">
+          <img src="images/clients/mastercraft.svg" alt="MasterCraft">
+          <img src="images/clients/filson.svg" alt="C.C. Filson &amp; Co.">
+        </div>
+      </li>
+      <li class="client slide-in-card">
+        <div class="logo-position">
+          <img src="images/clients/arcteryx.svg" alt="arctery'x">
+          <img src="images/clients/auclair.svg" alt="Auclair">
+        </div>
+      </li>
+      <li class="client slide-in-card">
+        <div class="logo-position">
+          <img src="images/clients/black-diamond.svg" alt="Black Diamond Equipment">
+          <img src="images/clients/carhartt.svg" alt="Carhartt">
+        </div>
+      </li>
+      <li class="client slide-in-card">
+        <div class="logo-position">
+          <img src="images/clients/five-below.svg" alt="Five Below">
+          <img src="images/clients/cooper-vision.svg" alt="Cooper Vision">
+        </div>
+      </li>
+      <li class="client slide-in-card">
+        <div class="logo-position">
+          <img src="images/clients/jackson-hole.svg" alt="Jackson Hole">
+          <img src="images/clients/traeger.svg" alt="Traeger">
+        </div>
+      </li>
+      <li class="client slide-in-card">
+        <div class="logo-position">
+          <img src="images/clients/air-liquide.svg" alt="Air Liquide">
+          <img src="images/clients/abbvie.svg" alt="Abbvie">
+        </div>
+      </li>
+      <li class="client slide-in-card">
+        <div class="logo-position">
+          <img src="images/clients/skullcandy.svg" alt="Skullcandy">
+          <img src="images/clients/buck.svg" alt="Buck Knives">
+        </div>
+      </li>
+      <li class="client slide-in-card">
+        <div class="logo-position">
+          <img src="images/clients/casper.svg" alt="Casper">
+          <img src="images/clients/souris-mini.svg" alt="Souris Mini">
+        </div>
+      </li>
+      <li class="client slide-in-card">
+        <div class="logo-position">
+          <img src="images/clients/patagonia.svg" alt="Patagonia">
+          <img src="images/clients/nixon.svg" alt="Nixon Watches & Accessories">
+        </div>
+      </li>
+      <li class="client slide-in-card">
+        <div class="logo-position">
+          <img src="images/clients/groupe-ch.png" alt="Groupe CH">
+          <img src="images/clients/thrasio.svg" alt="Thrasio">
+        </div>
+      </li>
+    </ul>
 
   </section>
 </section>
@@ -229,7 +277,7 @@
 
 <section class="clients layout-thirds stacked-component  content container">
   <h3><span class="en"> You&#x2019ve got questions; We&#x2019ve got  <strong>Answers</strong>.</span><span class="fr">Vous êtes en bonne compagnie</span> </h3>
-
+</section>
 
   <section class="below"></section>
 
