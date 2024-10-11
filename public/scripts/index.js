@@ -1,4 +1,3 @@
-
 (function() {
 
   gsap.registerPlugin(ScrollTrigger);
@@ -29,6 +28,8 @@
     document.body.classList.remove('lang-en', 'lang-fr');
     document.body.classList.add('lang-' + lang);
     localStorage.setItem('lang', lang);
+    // refresh all the animations because we caused a layout shift
+    ScrollTrigger.refresh();
   }
 
   // Function to check localStorage and set the body class on page load
@@ -98,7 +99,7 @@
     }
   });
 
-  introObserver.observe(introObserver);
+  introObserver.observe(intro);
 
   // GSAP Animations
   const introFadeout = new gsap.timeline({
@@ -215,7 +216,7 @@
       trigger: '#sizzle-v2',
       start: "top top",
       end: "bottom bottom",
-      scrub: 1,
+      scrub: .5,
       markers: false,
     }
   });
@@ -226,8 +227,21 @@
   });
 
 
+  // animate the video in
+  const mapAnimation = new gsap.timeline({
+    scrollTrigger: {
+      trigger: '#company',
+      start: "10% bottom",
+      end: "bottom bottom",
+      scrub: .5,
+      markers: false,
+    }
+  });
 
-
+  mapAnimation.to('#map-bg', {
+    yPercent: 20,
+    ease: "ease-out"
+  })
 
   // a reusable animation for fade/sliding in cards
   const $slideInCards = document.querySelectorAll(".slide-in-card");
@@ -236,8 +250,8 @@
     const slideInElement = new gsap.timeline({
       scrollTrigger: {
         trigger: element,
-        start: "top 90%",
-        end: "bottom bottom",
+        start: "top 95%",
+        end: "60% bottom",
         scrub: 1,
         markers: false
       }
@@ -249,8 +263,6 @@
       ease: "ease-out"
     });
   });
-
-
 })();
 
 

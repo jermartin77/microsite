@@ -83,9 +83,6 @@
 
   </div>
 </section>
-<!--<section id="better-together-section" class="better-together container" >-->
-
-<!--</section>-->
   <section id="statement" class="statement content container stacked-component">
     <div class="statement-wrapper">
       <div id="wordmark-spacer" class="wordmark-spacer">
@@ -112,23 +109,25 @@
       </svg>
         </div>
       </div>
-      <h2 id="position-statement" class="position-statement"><span class="en">O2 Commerce and ZaneRay are merging to form an industry-leading digital agency. By uniting O2’s data-driven expertise with ZaneRay’s renowned expertise in experience design, we’ll deliver innovative digital commerce solutions for forward-thinking organizations.</span><span class="fr">Les agences de commerce électronique O2 Commerce et ZaneRay fusionnent pour créer un nouveau géant dans le monde du commerce électronique. En combinant les experts en données d’O2 avec l’équipe de conception d’expérience renommée de ZaneRay, qui ont tous deux travaillé sur des projets complexes et de grande envergure pour certaines des organisations les plus avant-gardistes au monde, nous sommes prêts à redéfinir l’avenir du commerce numérique.</span> </h2>
+      <h2 id="position-statement" class="position-statement"><span class="en">O2 Commerce and ZaneRay are merging to form an industry-leading digital agency. By uniting O2’s data-driven expertise with ZaneRay’s renowned expertise in experience design, we’ll deliver innovative digital commerce solutions for forward-thinking organizations.</span><span class="fr">O2 Commerce et ZaneRay fusionnent pour former une agence numérique de premier plan. En unissant l’expertise d’O2 en matière de données à l’expertise reconnue de ZaneRay en matière de conception d’expériences, nous fournirons des solutions de commerce numérique innovantes aux organisations avant-gardistes.</span> </h2>
     </div>
   </section>
   <section id="video-section" class="video-section container content stacked-component">
     <div class="video-container">
-      <div id="play-icon" class="play-icon-wrapper"><img src="images/play-icon.svg" id="video-play-icon" class="video-play-icon"></div>
-    <video id="intro-video" width="1600" poster="images/video-poster.jpg"  preload="metadata">
-      <source src="video/o2-zr-small.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+      <div class="video-wrapper">
+        <div id="play-icon" class="play-icon-wrapper"><img src="images/play-icon.svg" id="video-play-icon" class="video-play-icon"></div>
+        <video id="intro-video" width="1600" poster="images/video-poster.jpg"  preload="metadata">
+          <source src="video/o2-zr-small.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
     <p class="large">Learn more about the merger from the Founders of O2 Commerce and ZaneRay: Charles Guimont & Henry Roberts</p>
     </div>
   </section>
 
 
   <section id="clients" class="clients stacked-component  content container">
-    <h2 class="heading-half"><span class="en"> You&#x2019re in <strong>Good</strong> Company</span><span class="fr">Vous êtes en <strong>bonne</strong> compagnie</span> </h2>
+    <h2 class="heading-half"><span class="en"> You&#x2019re in <strong>Good</strong> Company.</span><span class="fr">Vous êtes en <strong>bonne</strong> compagnie.</span> </h2>
     <ul id="clients-list" class="clients-list active-primary">
       <li class="client slide-in-card client-primary">
         <div class="logo-position">
@@ -209,12 +208,38 @@
 <section id="sizzle-v2" class="sizzle-v2 content">
   <div id="sizzle-carousel" class="sizzle-carousel">
     <div class="sizzle-wrapper">
-      <img class="sizzle-reel-img" src="images/clients-reel-desktop.jpg" alt="O2 and ZR clients">
-      <!--    <img class="sizzle-carousel-item" src="images/slideshow-yeti.jpg" alt="Yeti Cycles">-->
-      <!--    <img class="sizzle-carousel-item" src="images/slideshow-mastercraft.jpg" alt="Mastercraft">-->
-      <!--    <img class="sizzle-carousel-item" src="images/slideshow-howler.jpg" alt="Howler Brothers">-->
-      <!--    <img class="sizzle-carousel-item" src="images/slideshow-bd.jpg" alt="Black Diamond">-->
+      <picture>
+        <source srcset="images/clients-reel-mobile.jpg" media="(orientation: portrait)">
+        <source srcset="images/clients-reel-desktop.jpg" media="(orientation: landscape)">
+        <img src="images/clients-reel-mobile.jpg" class="sizzle-reel-img" alt="ZR and O2 clients">
+      </picture>
     </div>
+  </div>
+</section>
+<section id="company" class="company content stacked-component">
+  <div class="map-bg-wrapper">
+  <img src="images/map-bg.svg" id="map-bg" class="map-bg">
+  </div>
+  <div class="company-content container">
+  <h2 class="heading-half"><span class="en"> The <strong>best</strong> of both worlds.</span><span class="fr">Vous êtes en <strong>bonne</strong> compagnie.</span> </h2>
+    <ul class="company-list">
+      <li class="company-item slide-in-card">
+        <img src="images/company-o2.jpg" class="company-image" alt="O2 Commerce">
+        <img src="images/o2-logo.svg" class="company-logo" alt="O2Commerce">
+        <p>O2 Commerce is a data-driven ecommerce leader, empowering organizations to thrive through innovative, scalable solutions. By leveraging the power of data and technology, we drive digital transformation and ensure seamless integrations. Together, we build future-proof strategies for an ever-evolving ecommerce landscape.</p>
+      </li>
+      <li class="company-item slide-in-card">
+        <img src="images/company-zr.jpg" class="company-image" alt="ZaneRay">
+        <img src="images/zr-logo.svg" class="company-logo" alt="ZaneRay">
+        <p>ZaneRay is an award-winning experience design agency that transforms digital landscapes into captivating journeys. By specializing in UX and design innovation, we craft stunning online storefronts that elevate brands and engage users. Our design-first approach ensures every interaction is memorable and customer-centric.</p>
+      </li>
+      <li class="company-item slide-in-card">
+        <img src="images/company-both.jpg" class="company-image" alt="O2Commmerce and ZaneRay">
+        <h3>Better Together</h3>
+        <p>By merging O2 Commerce’s data expertise with ZaneRay’s design mastery, this new partnership brings together the best of both worlds—technical innovation meets captivating design, delivering end-to-end solutions that redefine what’s possible in digital commerce.</p>
+      </li>
+    </ul>
+
   </div>
 </section>
 
