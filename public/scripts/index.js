@@ -2,7 +2,6 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-
   // setting a var for the window size if we need it
   let windowWidth = window.innerWidth; // Initial window width
   let resizeTimeout;
@@ -14,7 +13,11 @@
     // Set a timeout to update the window width after resizing is done
     resizeTimeout = setTimeout(() => {
       windowWidth = window.innerWidth;
-      console.log(`Window width updated: ${windowWidth}px`);
+      ScrollTrigger.refresh();
+      if(windowWidth < 1000) {
+        capabilitiesStart = 'top 90%';
+        capabilitiesEnd = 'top 30%';
+      }
     }, 200);
   });
 
@@ -54,6 +57,25 @@
   });
 
 
+
+
+
+  // intersection observer that toggles the navigation
+  const intro = document.getElementById('intro-section');
+  const navigation = document.getElementById('navigation');
+
+  const introObserver = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      navigation.classList.add('nav-hidden');
+    } else {
+      navigation.classList.remove('nav-hidden');
+    }
+  });
+
+  introObserver.observe(intro);
+
+
+
   // Video actions
   const introVideo = document.getElementById('intro-video');
   const playIcon = document.getElementById('play-icon');
@@ -85,21 +107,6 @@
   });
 
   videoObserver.observe(introVideo);
-
-
-  // intersection observer that toggles the navigation
-  const intro = document.getElementById('intro-section');
-  const navigation = document.getElementById('navigation');
-
-  const introObserver = new IntersectionObserver(([entry]) => {
-    if (entry.isIntersecting) {
-      navigation.classList.add('nav-hidden');
-    } else {
-      navigation.classList.remove('nav-hidden');
-    }
-  });
-
-  introObserver.observe(intro);
 
   // GSAP Animations
   const introFadeout = new gsap.timeline({
@@ -154,7 +161,7 @@
   });
 
   positionStatement.from('#wordmark-wrapper', {
-    scale: 1.25,
+    scale: 1.2,
     duration: 1,
     ease: "ease-out"
   }).from('#position-statement', {
@@ -241,7 +248,60 @@
   mapAnimation.to('#map-bg', {
     yPercent: 20,
     ease: "ease-out"
-  })
+  });
+
+  // a reusable animation for fade/sliding in cards
+  const $capabilities = document.querySelectorAll(".capability");
+  const $capabilitiesDiagram = document.getElementById('capabilities-diagram');
+
+  let capabilitiesStart = 'top 70%';
+  let capabilitiesEnd = 'bottom 15%';
+
+  if (windowWidth < 1000) {
+    // set the start and end to different values
+    capabilitiesStart = 'top 90%';
+    capabilitiesEnd = 'top 30%';
+  }
+
+  $capabilities.forEach((element, index) => {
+    const capabilityAnimation = new gsap.timeline({
+      scrollTrigger: {
+        trigger: element,
+        start: capabilitiesStart,
+        end: capabilitiesEnd,
+        scrub: .5,
+        markers: true,
+        onEnter: () => {
+          $capabilitiesDiagram.classList.add('step-' + (index + 1));
+        }
+        // toggleClass: {targets: element, className: "active"},
+      }
+    });
+
+    capabilityAnimation.to(element, {
+      opacity: 1,
+      ease: "ease-out",
+      duration: 0.2,
+
+    }).to(element, {
+      opacity: 0,
+      ease: "ease-out",
+      duration: 0.2,
+    }, 1);
+  });
+
+
+
+
+  ScrollTrigger.create({
+    trigger: '#capabilities-section',
+    start: 'top bottom', // When the top of the box hits the bottom of the viewport
+    end: 'bottom top', // When the bottom of the box is at the top of the viewport
+    markers: false,
+    onLeave: () => $capabilitiesDiagram.classList.remove('step-1', 'step-2', 'step-3', 'step-4'), // Remove multiple classes
+    onLeaveBack: () => $capabilitiesDiagram.classList.remove('step-1', 'step-2', 'step-3', 'step-4')
+
+  });
 
   // a reusable animation for fade/sliding in cards
   const $slideInCards = document.querySelectorAll(".slide-in-card");
