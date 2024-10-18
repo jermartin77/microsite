@@ -126,53 +126,44 @@
   });
 
 
-/*  const betterTogether = new gsap.timeline({
+  const wordmark = new gsap.timeline({
     scrollTrigger: {
-      trigger: '#better-together-section',
+      trigger: '#better-together',
       start: "top top",
       end: "bottom top",
-      toggleClass: "active",
-      scrub: 1,
-      markers: false
-    }
-  });
-
-  betterTogether.to('#better-together-wordmark', {
-    scale: 1.066,
-    opacity: 1,
-    duration: 1.33,
-    ease: 'ease-out'
-  }).to('#better-together-wordmark', {
-    scale: 1.1,
-    opacity: 0,
-    duration: .66,
-    ease: 'ease-out'
-  })*/
-
-  const positionStatement = new gsap.timeline({
-    scrollTrigger: {
-      trigger: '#statement',
-      start: "top top",
-      end: "bottom 70%",
       toggleClass: "wordmark-active",
       scrub: 1,
       markers: false,
     }
   });
 
-  positionStatement.from('#wordmark-wrapper', {
-    scale: 1.2,
-    duration: 1,
-    ease: "ease-out"
-  }).from('#position-statement', {
-    opacity: 0,
-    duration: 1,
-    ease: "ease-out"
-  }).to('#position-statement', {
+  wordmark.to('#better-together-wordmark', {
     opacity: 1,
-    duration: 1,
-    ease: "ease-out"
-  })
+    duration: 0.5,
+    ease: 'ease-out'
+  }).to('#better-together-wordmark', {
+    opacity: 0,
+    duration: 0.5,
+    scale: 1.06,
+    ease: 'ease-out'
+  });
+
+
+  const statement = new gsap.timeline({
+    scrollTrigger: {
+      trigger: '#position-statement',
+      start: "top 60%",
+      end: "bottom 70%",
+      scrub: 1,
+      markers: false,
+    }
+  });
+
+  statement.from('#position-statement', {
+    yPercent: 20,
+    opacity: 0,
+    ease: 'ease-out'
+  });
 
   // animate the video in
   const videoContainer = new gsap.timeline({
