@@ -270,11 +270,11 @@
         start: capabilitiesStart,
         end: capabilitiesEnd,
         scrub: .5,
-        markers: true,
+        markers: false,
         onEnter: () => {
+          // add classes to the SVG to create the animation
           $capabilitiesDiagram.classList.add('step-' + (index + 1));
         }
-        // toggleClass: {targets: element, className: "active"},
       }
     });
 
@@ -295,8 +295,8 @@
 
   ScrollTrigger.create({
     trigger: '#capabilities-section',
-    start: 'top bottom', // When the top of the box hits the bottom of the viewport
-    end: 'bottom top', // When the bottom of the box is at the top of the viewport
+    start: 'top bottom',
+    end: 'bottom top',
     markers: false,
     onLeave: () => $capabilitiesDiagram.classList.remove('step-1', 'step-2', 'step-3', 'step-4'), // Remove multiple classes
     onLeaveBack: () => $capabilitiesDiagram.classList.remove('step-1', 'step-2', 'step-3', 'step-4')
