@@ -13,11 +13,10 @@
     // Set a timeout to update the window width after resizing is done
     resizeTimeout = setTimeout(() => {
       windowWidth = window.innerWidth;
-      ScrollTrigger.refresh();
-      if(windowWidth < 1000) {
+      /*if(windowWidth < 1000) {
         capabilitiesStart = 'top 90%';
         capabilitiesEnd = 'top 30%';
-      }
+      }*/
     }, 200);
   });
 
@@ -56,10 +55,6 @@
     });
   });
 
-
-
-
-
   // intersection observer that toggles the navigation
   const intro = document.getElementById('intro-section');
   const navigation = document.getElementById('navigation');
@@ -73,8 +68,6 @@
   });
 
   introObserver.observe(intro);
-
-
 
   // Video actions
   const introVideo = document.getElementById('intro-video');
@@ -97,7 +90,6 @@
     introVideo.controls = false;  // Hide controls after the video ends
     introVideo.load();  // This resets the video to the initial state and shows the poster
   });
-
 
   // intersection observer pauses the video when it's out of the viewport
   const videoObserver = new IntersectionObserver(([entry]) => {
@@ -125,7 +117,6 @@
     ease: 'ease-out'
   });
 
-
   const wordmark = new gsap.timeline({
     scrollTrigger: {
       trigger: '#better-together',
@@ -147,7 +138,6 @@
     scale: 1.06,
     ease: 'ease-out'
   });
-
 
   const statement = new gsap.timeline({
     scrollTrigger: {
@@ -181,7 +171,6 @@
     ease: "ease-out"
   })
 
-
   // animate and swap the client images
   const $clientsList = document.getElementById('clients-list');
 
@@ -207,7 +196,7 @@
 
 
   // the overflow animation for the clients
-  console.log('sizzlewidth', document.querySelector('.sizzle-wrapper').offsetWidth)
+  // console.log('sizzlewidth', document.querySelector('.sizzle-wrapper').offsetWidth)
 
   const sizzleCarousel = new gsap.timeline({
     scrollTrigger: {
@@ -223,7 +212,6 @@
     xPercent: -66.6666,
     ease: "ease-out"
   });
-
 
   // animate the video in
   const mapAnimation = new gsap.timeline({
@@ -245,21 +233,34 @@
   const $capabilities = document.querySelectorAll(".capability");
   const $capabilitiesDiagram = document.getElementById('capabilities-diagram');
 
-  let capabilitiesStart = 'top 70%';
+/*  let capabilitiesStart = 'top 70%';
   let capabilitiesEnd = 'bottom 15%';
 
   if (windowWidth < 1000) {
     // set the start and end to different values
     capabilitiesStart = 'top 90%';
     capabilitiesEnd = 'top 30%';
-  }
+  }*/
+
+
+
+  // intersection observer that adds a class to the capabilities diagram used specifically for mobile
+  const mobileCapabilities = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      $capabilitiesDiagram.classList.add('capabilities-active')
+    } else {
+      $capabilitiesDiagram.classList.remove('capabilities-active')
+    }
+  });
+
+  mobileCapabilities.observe($capabilitiesDiagram);
 
   $capabilities.forEach((element, index) => {
     const capabilityAnimation = new gsap.timeline({
       scrollTrigger: {
         trigger: element,
-        start: capabilitiesStart,
-        end: capabilitiesEnd,
+        start: 'top 70%',
+        end: 'bottom 15%',
         scrub: .5,
         markers: false,
         onEnter: () => {
