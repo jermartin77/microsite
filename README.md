@@ -1,4 +1,4 @@
-# microsite
+# O2Commerce & ZaneRay Microsite
 
 To start the project: 
 
