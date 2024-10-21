@@ -1247,6 +1247,7 @@ input.button,
     backdrop-filter: blur(var(--blur-radius));
     padding: clamp(1.5rem, 2.5vw, 3rem);
     border-radius: var(--radius-md);
+    height: fit-content;
 
     @media (min-width: 1000px) {
         &:nth-child(1),
@@ -1482,7 +1483,7 @@ input.button,
 .contact {
     display: flex;
     gap: var(--container-padding);
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
 
     p {

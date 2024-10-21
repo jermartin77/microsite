@@ -7,17 +7,17 @@ const port = 3000;
 
 // Create a livereload server
 const liveReloadServer = livereload.createServer();
-liveReloadServer.watch(path.join(__dirname, 'public'));
+liveReloadServer.watch(path.join(__dirname, 'docs'));
 
 // Use connect-livereload middleware to inject livereload script into HTML
 app.use(connectLivereload());
 
-// Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files from the "docs" directory
+app.use(express.static(path.join(__dirname, 'docs')));
 
 // Fallback route
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'docs', 'index.html'));
 });
 
 // Reload the browser when changes are detected
