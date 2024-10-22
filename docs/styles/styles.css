@@ -6,7 +6,7 @@
     --stacked-component: 96px;
     --horizontal-gap: clamp(1rem, 2vw, 3rem);
     --vertical-gap: clamp(.1rem, 2vw, 3rem);
-    --font-size-h3: 1.5rem;
+    --font-size-h3: clamp(1.25rem, 1.66vw, 2rem);
     --font-size-h4: 18px;
 
     --color-primary-100: rgb(183,220,229);
@@ -45,8 +45,7 @@
     }
     @media (min-width: 1000px) {
         --stacked-component-sm: 80px;
-        --stacked-component: 220px;
-        --font-size-h3: 2rem;
+        --stacked-component: 200px;
         --font-size-h4: 20px;
     }
 }
@@ -496,6 +495,10 @@ input.button,
             width: 140px;
         }
     }
+
+    img {
+        display: block;
+    }
 }
 
 .nav-links {
@@ -537,11 +540,16 @@ input.button,
     height: 100vh;
     top: 0;
     left: 0;
-    padding: calc(var(--container-padding) * 2);
+    padding: calc(var(--container-padding) * 3);
+
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: var(--z-index-intro);
+
+    @media (min-width: 600px) {
+        padding: calc(var(--container-padding) * 2);
+    }
 }
 
 .intro-animation {
@@ -680,7 +688,7 @@ input.button,
 
 .better-together {
     width: 100vw;
-    height: 50vh;
+    height: 65vh;
     position: relative;
     z-index: var(--z-index-better);
 }
@@ -758,7 +766,7 @@ input.button,
 
 /* Statement */
 .statement {
-    padding-top: 60vh;
+    padding-top: 55vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -938,26 +946,6 @@ input.button,
     }
 }
 
-/* Content Layout */
-//.layout-thirds {
-//    display: flex;
-//    gap: var(--container-padding);
-//    flex-direction: column;
-//
-//    @media (min-width: 1000px) {
-//        flex-direction: row;
-//        align-items: flex-start;
-//
-//        h3 {
-//            margin: 0;
-//            padding-top: 112px;
-//            width: 33%;
-//            position: sticky;
-//            top: 0;
-//            left: 0;
-//        }
-//    }
-//}
 
 .clients-list {
     list-style-type: none;
@@ -1063,7 +1051,7 @@ input.button,
     video {
         aspect-ratio: 16/9;
         width: 100%;
-        border-radius: var(--radius-md);
+        border-radius: var(--radius-sm);
         cursor: pointer;
 
     }
@@ -1156,7 +1144,6 @@ input.button,
     @media (min-width: 1000px) {
         display: grid;
         grid-template-columns: 1fr 1fr; /* Two columns */
-        grid-template-rows: repeat(2, 1fr); /* Two rows */
     }
 }
 
@@ -1184,6 +1171,10 @@ input.button,
 
     h3 {
         margin-bottom: 1em;
+    }
+
+    img {
+        border-radius: var(--radius-sm);
     }
 }
 
@@ -1429,7 +1420,10 @@ input.button,
     ul {
         color: var(--color-neutral-100);
         list-style-type: none;
-        padding: 0 0 0 60px; /*44px + .5rem*/
+        padding: 0 0 0 48px; /*32px + 1rem*/
+        @media (min-width: 1000px) {
+            padding: 0 0 0 60px; /*44px + 1rem*/
+        }
 
         li {
             margin-bottom: .5em;
@@ -1445,6 +1439,10 @@ input.button,
     @media (min-width: 1000px) {
         flex-direction: row;
     }
+}
+
+.partners {
+    padding-bottom: 0; /* overriding stacked component styles so the anchor nav works */
 }
 
 
@@ -1480,14 +1478,6 @@ input.button,
         @media (min-width: 900px) {
             width: 20%;
         }
-
-       /* @media (min-width: 1440px) {
-            width: 16.66%;
-        }
-
-        @media (min-width: 1900px) {
-            width: 12.5%;
-        }*/
     }
 
     img {
@@ -1495,11 +1485,12 @@ input.button,
     }
 }
 
-.contact {
+.contact.contact  {
     display: flex;
     gap: var(--container-padding);
     align-items: flex-start;
     flex-direction: column;
+    padding-top: var(--stacked-component); /* overriding stacked component styles so the anchor nav works */
 
     p {
         max-width: 60ch;
