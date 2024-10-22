@@ -1414,6 +1414,10 @@ p {
 
 form {
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
 }
 
 .field {
@@ -1543,7 +1547,7 @@ input.hs-button,
     margin: 0;
 
     position: absolute;
-    top: calc(100% + .25rem);
+    top: 100%;
 
     label {
         position: relative;
