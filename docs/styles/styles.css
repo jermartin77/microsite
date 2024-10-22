@@ -34,7 +34,7 @@
 
     --transparent-dark: rgba(4,16,20, .5);
     --transparent-dark-hover: rgba(4,16,20, .8);
-    --transparent-light: rgb(90,135,147, .3);;
+    --transparent-light: rgba(90,135,147, .3);
     --blur-radius: 5px;
 
     --radius-sm: 8px;
@@ -46,7 +46,7 @@
     }
     @media (min-width: 1000px) {
         --stacked-component-sm: 80px;
-        --stacked-component: 200px;
+        --stacked-component: 220px;
         --font-size-h4: 20px;
     }
 }
@@ -1454,6 +1454,7 @@ form {
         border: 0;
         transition: all .3s ease-out;
         outline: 0px solid rgb(125,197,216, 0.8);
+        border: 1px solid rgba(90,135,147, .25);
         background-color: var(--transparent-dark);
         line-height: 1.75em;
         font-size: 1.125rem;
@@ -1533,6 +1534,7 @@ input.hs-button,
         line-height: 1rem;
         height: 80px;
         border-radius: 40px;
+        border: 1px solid rgba(90,135,147, .25);
 
     }
 }
