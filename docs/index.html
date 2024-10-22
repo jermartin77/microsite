@@ -359,41 +359,36 @@
   <h2><span class="en"> We want to hear from <strong>you</strong>.</span><span class="fr">Nous voulons connaître <strong>votre avis.</strong></span> </h2>
   <p>Nunc dapibus, augue non luctus ornare, nisi ex sollicitudin mauris, sit amet volutpat orci ipsum quis sapien. In at efficitur ipsum. </p>
   </div>
-  <form class="contact-form">
-
-    <div class="input-group">
-      <input type="text" id="#first-name" name="first-name" placeholder="" required>
-      <label for="#first-name"><span class="en">First Name</span><span class="fr">Prénom</span> </label>
-
-    </div>
-    <div class="input-group">
-      <input type="text" id="#last-name" name="last-name" placeholder="" required>
-      <label for="#last-name"><span class="en">Last Name</span><span class="fr">Nom de Famille</span></label>
-    </div>
-    <div class="input-group">
-      <input type="email" id="email-address" name="email" placeholder="" required>
-      <label for="email-address">Email</label>
-    </div>
-    <div class="input-group">
-      <textarea id="#comments" name="comments" placeholder=""></textarea>
-      <label for="#comments"><span class="en">What can we help you with?</span><span class="fr">En quoi pouvons-nous vous aider ?</span> </label>
-    </div>
-    <div class="input-group">
-      <input type="submit" class="button button-lg">
-    </div>
-  </form>
+  <div id="hubspot-form" class="contact-form">
+  </div>
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script charset=“utf-8” type=“text/javascript” src=“//js.hsforms.net/forms/embed/v2.js”></script>
-<!--<script>-->
-<!--  hbspt.forms.create({-->
-<!--    portalId: “44614467",-->
-<!--  formId: “c3fb226b-6134-4cdc-98ed-eeea263bb6fa”-->
-<!--  });-->
-<!--</script>-->
+<script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/v2.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    hbspt.forms.create({
+      portalId: "44614467",
+      formId: "c3fb226b-6134-4cdc-98ed-eeea263bb6fa",
+      target: "#hubspot-form",
+      onFormReady: function() {
+        const $hsInputs = document.querySelectorAll('.hs-input');
+        $hsInputs.forEach(function(input, index) {
+          input.addEventListener('focus', function() {
+            input.parentElement.parentElement.classList.add('field-focused');
+          });
+
+          input.addEventListener('blur', function() {
+            if (!input.value) {
+              input.parentElement.parentElement.classList.remove('field-focused');
+            }
+          });
+        });
+      }
+    });
+  });
+</script>
 <script src="scripts/index.js"></script>
-
-
 </body>
 </html>

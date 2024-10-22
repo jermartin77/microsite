@@ -13,10 +13,8 @@
     // Set a timeout to update the window width after resizing is done
     resizeTimeout = setTimeout(() => {
       windowWidth = window.innerWidth;
-      /*if(windowWidth < 1000) {
-        capabilitiesStart = 'top 90%';
-        capabilitiesEnd = 'top 30%';
-      }*/
+      // refreshing the stubborn ScrollTrigger.
+      setTimeout(() => ScrollTrigger.update(), 500);
     }, 200);
   });
 
@@ -31,7 +29,10 @@
     document.body.classList.add('lang-' + lang);
     localStorage.setItem('lang', lang);
     // refresh all the animations because we caused a layout shift
-    ScrollTrigger.refresh();
+    setTimeout(() => {
+      ScrollTrigger.update();
+    }, 500);
+    // ScrollTrigger.refresh();
   }
 
   // Function to check localStorage and set the body class on page load
@@ -134,7 +135,7 @@
     ease: 'ease-out'
   }).to('#better-together-wordmark', {
     opacity: 0,
-    duration: 0.5,
+    duration: 1,
     scale: 1.06,
     ease: 'ease-out'
   });
@@ -142,8 +143,8 @@
   const statement = new gsap.timeline({
     scrollTrigger: {
       trigger: '#position-statement',
-      start: "top 60%",
-      end: "bottom 70%",
+      start: "top 70%",
+      end: "bottom 80%",
       scrub: 1,
       markers: false,
     }
@@ -229,27 +230,15 @@
     ease: "ease-out"
   });
 
-  // a reusable animation for fade/sliding in cards
   const $capabilities = document.querySelectorAll(".capability");
   const $capabilitiesDiagram = document.getElementById('capabilities-diagram');
-
-/*  let capabilitiesStart = 'top 70%';
-  let capabilitiesEnd = 'bottom 15%';
-
-  if (windowWidth < 1000) {
-    // set the start and end to different values
-    capabilitiesStart = 'top 90%';
-    capabilitiesEnd = 'top 30%';
-  }*/
-
-
 
   // intersection observer that adds a class to the capabilities diagram used specifically for mobile
   const mobileCapabilities = new IntersectionObserver(([entry]) => {
     if (entry.isIntersecting) {
-      $capabilitiesDiagram.classList.add('capabilities-active')
+      $capabilitiesDiagram.classList.add('capabilities-active');
     } else {
-      $capabilitiesDiagram.classList.remove('capabilities-active')
+      $capabilitiesDiagram.classList.remove('capabilities-active');
     }
   });
 
@@ -259,8 +248,8 @@
     const capabilityAnimation = new gsap.timeline({
       scrollTrigger: {
         trigger: element,
-        start: 'top 70%',
-        end: 'bottom 15%',
+        start: 'top 80%',
+        end: 'top 50%',
         scrub: .5,
         markers: false,
         onEnter: () => {
@@ -275,25 +264,22 @@
       ease: "ease-out",
       duration: 0.2,
 
-    }).to(element, {
-      opacity: 0,
-      ease: "ease-out",
-      duration: 0.2,
-    }, 1);
+    })
+    //   .to(element, {
+    //   opacity: 0,
+    //   ease: "ease-out",
+    //   duration: 0.2,
+    // }, 1);
   });
 
-
-
-
-  ScrollTrigger.create({
-    trigger: '#capabilities-section',
-    start: 'top bottom',
-    end: 'bottom top',
-    markers: false,
-    onLeave: () => $capabilitiesDiagram.classList.remove('step-1', 'step-2', 'step-3', 'step-4'), // Remove multiple classes
-    onLeaveBack: () => $capabilitiesDiagram.classList.remove('step-1', 'step-2', 'step-3', 'step-4')
-
-  });
+  // ScrollTrigger.create({
+  //   trigger: '#capabilities-section',
+  //   start: 'top bottom',
+  //   end: 'bottom top',
+  //   markers: false,
+  //   onLeave: () => $capabilitiesDiagram.classList.remove('step-1', 'step-2', 'step-3', 'step-4'), // Remove multiple classes
+  //   onLeaveBack: () => $capabilitiesDiagram.classList.remove('step-1', 'step-2', 'step-3', 'step-4')
+  // });
 
   // a reusable animation for fade/sliding in cards
   const $slideInCards = document.querySelectorAll(".slide-in-card");
