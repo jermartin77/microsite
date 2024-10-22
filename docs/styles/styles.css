@@ -583,7 +583,7 @@ p {
 
 .better-together {
     width: 100vw;
-    height: 65vh;
+    height: 70vh;
     position: relative;
     z-index: var(--z-index-better);
 }
