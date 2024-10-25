@@ -23,6 +23,9 @@
     document.querySelector('body').classList.add('start')
   }, 300);
 
+
+  let lang = 'en';
+
   // setting the language
   function setBodyClass(lang) {
     document.body.classList.remove('lang-en', 'lang-fr');
@@ -36,25 +39,67 @@
   }
 
   // Function to check localStorage and set the body class on page load
-  function checkClassFromLocalStorage() {
-    const savedLang = localStorage.getItem('lang');
-    if (savedLang) {
-      setBodyClass(savedLang);
+  function checkLanguage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
+
+    lang = urlLang ? urlLang : localStorage.getItem('lang');
+
+    if (lang) {
+      setBodyClass(lang);
     }
   }
 
-  // Run this on page load to check localStorage for a language if it is set
-  checkClassFromLocalStorage();
+  // Run this on page load to check localStorage or the lang param for a language if it is set
+  checkLanguage();
+
+  const enFormId = 'c3fb226b-6134-4cdc-98ed-eeea263bb6fa'
+  const frFormId = '9bdef6c2-b4a0-4b26-bdaa-c00bfe7553f4'
+
+  function bindHsForm() {
+    const $hsInputs = document.querySelectorAll('.hs-input');
+    $hsInputs.forEach(function(input, index) {
+      input.addEventListener('focus', function() {
+        input.parentElement.parentElement.classList.add('field-focused');
+      });
+
+      input.addEventListener('blur', function() {
+        if (!input.value) {
+          input.parentElement.parentElement.classList.remove('field-focused');
+        }
+      });
+    });
+  }
 
   const langLinks = document.querySelectorAll('.lang-link');
+
 
   langLinks.forEach(link => {
     link.addEventListener('click', function (event) {
       event.preventDefault();
-      const lang = this.dataset.lang;
+      lang = this.dataset.lang;
       setBodyClass(lang);
+
+      hbspt.forms.create({
+        portalId: "44614467",
+        formId: lang === 'en' ? enFormId : frFormId,
+        target: "#hubspot-form",
+        onFormReady: bindHsForm
+      });
     });
   });
+
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    hbspt.forms.create({
+      portalId: "44614467",
+      formId: lang === 'en' ? enFormId : frFormId,
+      target: "#hubspot-form",
+      onFormReady: bindHsForm
+    });
+  });
+
 
   // intersection observer that toggles the navigation
   const intro = document.getElementById('intro-section');
@@ -261,25 +306,11 @@
 
     capabilityAnimation.to(element, {
       opacity: 1,
-      ease: "ease-out",
-      duration: 0.2,
-
+      ease: "ease-out"
     })
-    //   .to(element, {
-    //   opacity: 0,
-    //   ease: "ease-out",
-    //   duration: 0.2,
-    // }, 1);
   });
 
-  // ScrollTrigger.create({
-  //   trigger: '#capabilities-section',
-  //   start: 'top bottom',
-  //   end: 'bottom top',
-  //   markers: false,
-  //   onLeave: () => $capabilitiesDiagram.classList.remove('step-1', 'step-2', 'step-3', 'step-4'), // Remove multiple classes
-  //   onLeaveBack: () => $capabilitiesDiagram.classList.remove('step-1', 'step-2', 'step-3', 'step-4')
-  // });
+
 
   // a reusable animation for fade/sliding in cards
   const $slideInCards = document.querySelectorAll(".slide-in-card");
