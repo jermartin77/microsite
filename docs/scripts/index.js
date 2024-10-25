@@ -4,6 +4,7 @@
 
   // setting a var for the window size if we need it
   let windowWidth = window.innerWidth; // Initial window width
+  let windowHeight = window.innerHeight; // Initial window width
   let resizeTimeout;
 
   window.addEventListener('resize', () => {
@@ -13,8 +14,14 @@
     // Set a timeout to update the window width after resizing is done
     resizeTimeout = setTimeout(() => {
       windowWidth = window.innerWidth;
+      windowHeight = window.innerHeight;
+      initSizzleCarousel();
+
       // refreshing the stubborn ScrollTrigger.
-      setTimeout(() => ScrollTrigger.update(), 500);
+      setTimeout(() =>  {
+        ScrollTrigger.update();
+
+      }, 500);
     }, 200);
   });
 
@@ -108,8 +115,10 @@
   const introObserver = new IntersectionObserver(([entry]) => {
     if (entry.isIntersecting) {
       navigation.classList.add('nav-hidden');
+      document.documentElement.classList.add('snap')
     } else {
       navigation.classList.remove('nav-hidden');
+      document.documentElement.classList.remove('snap')
     }
   });
 
@@ -151,7 +160,7 @@
     scrollTrigger: {
       trigger: '#intro-section',
       start: "top top",
-      end: "bottom top",
+      end: "bottom 20%",
       scrub: 1,
       markers: false
     }
@@ -166,8 +175,8 @@
   const wordmark = new gsap.timeline({
     scrollTrigger: {
       trigger: '#better-together',
-      start: "top top",
-      end: "bottom top",
+      start: "top 5%",
+      end: "bottom 15%",
       toggleClass: "wordmark-active",
       scrub: 1,
       markers: false,
@@ -240,24 +249,59 @@
     }
   });
 
-
   // the overflow animation for the clients
   // console.log('sizzlewidth', document.querySelector('.sizzle-wrapper').offsetWidth)
+let sizzleCarouselAnimation;
+const $sizzleCarousel = document.getElementById('sizzle-carousel');
 
-  const sizzleCarousel = new gsap.timeline({
-    scrollTrigger: {
-      trigger: '#sizzle-v2',
-      start: "top top",
-      end: "bottom bottom",
-      scrub: .5,
-      markers: false,
+  function initSizzleCarousel() {
+    if(typeof sizzleCarouselAnimation === 'object') {
+      sizzleCarouselAnimation.kill();
     }
-  });
+    if (windowWidth > windowHeight) {
+      console.log('landscape')
 
-  sizzleCarousel.to('.sizzle-wrapper', {
-    xPercent: -66.6666,
-    ease: "ease-out"
-  });
+      $sizzleCarousel.scrollLeft = 0;
+      // landscape mode
+      sizzleCarouselAnimation = new gsap.timeline({
+        scrollTrigger: {
+          trigger: '#sizzle-v2',
+          start: "top top",
+          end: "bottom bottom",
+          scrub: .5,
+          markers: false,
+        }
+      });
+
+      sizzleCarouselAnimation.to('.sizzle-wrapper', {
+        xPercent: -66.6666,
+        ease: "ease-out"
+      });
+
+    } else {
+      console.log('portrait')
+
+      const $sizzleCarousel = document.getElementById('sizzle-carousel');
+
+      $sizzleCarousel.scrollLeft = 400;
+
+
+
+      sizzleCarouselAnimation = new gsap.timeline({
+        scrollTrigger: {
+          trigger: '#sizzle-v2',
+          start: "top 70%",
+          onEnter: () => {
+            $sizzleCarousel.scrollLeft = 0;
+          },
+          markers: false,
+        }
+      });
+    }
+  }
+
+  initSizzleCarousel();
+
 
   // animate the video in
   const mapAnimation = new gsap.timeline({
