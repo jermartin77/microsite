@@ -43,7 +43,7 @@
     const urlParams = new URLSearchParams(window.location.search);
     const urlLang = urlParams.get('lang');
 
-    lang = urlLang ? urlLang : localStorage.getItem('lang');
+    lang = urlLang || localStorage.getItem('lang') || lang;
 
     if (lang) {
       setBodyClass(lang);
