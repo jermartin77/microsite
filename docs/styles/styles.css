@@ -112,6 +112,7 @@ h6 {
 h2 {
     font-size: clamp(2.5rem, 5.5vw, 7rem); /* 96px @ 1680px */
     margin-bottom: .5em;
+    max-width: 14ch;
 }
 
 h3 {
@@ -123,7 +124,7 @@ h4 {
 }
 
 .heading-half {
-    width: 13ch;
+    width: 14ch;
     margin-bottom: var(--stacked-component-sm);
     padding-left: var(--container-padding);
     padding-right: var(--container-padding);
@@ -1111,8 +1112,7 @@ p {
     }
 
     p {
-        max-width: 60ch;
-
+        max-width: 55ch;
     }
 }
 
@@ -1384,7 +1384,7 @@ p {
     padding-top: var(--stacked-component); /* overriding stacked component styles so the anchor nav works */
 
     p {
-        max-width: 60ch;
+        max-width: 55ch;
     }
 
     @media (min-width: 1000px) {
@@ -1402,6 +1402,10 @@ p {
     padding-right: var(--container-padding);
     @media (min-width: 1000px) {
         padding: 0;
+    }
+
+    h2 {
+        max-width: 14ch;
     }
 }
 
@@ -1486,6 +1490,7 @@ form {
 
     textarea {
         height: 180px;
+        display: block;
     }
 
     textarea:placeholder-shown {
