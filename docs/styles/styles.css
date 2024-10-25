@@ -1121,8 +1121,15 @@ p {
     margin-bottom: 1.5rem;
     @media (min-width: 1000px) {
         width: 200px;
-        height: 25px;
     }
+}
+
+.company-o2 {
+    aspect-ratio: 310/36;
+}
+
+.company-zr {
+    aspect-ratio: 317/55;
 }
 
 .capabilities {
