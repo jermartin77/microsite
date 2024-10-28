@@ -1204,9 +1204,9 @@ p {
 
 
     .circle-1 {
-        stroke-dasharray: 353;
-        stroke-dashoffset: 352;
-        stroke: var(--color-primary-600);
+        stroke-dasharray: 256;
+        stroke-dashoffset: 255;
+        stroke: var(--color-primary-700);
 
         .step-1 & {
             stroke-dashoffset: 0;
@@ -1214,9 +1214,9 @@ p {
     }
 
     .circle-2 {
-        stroke-dasharray: 754;
-        stroke-dashoffset: 753;
-        stroke: var(--color-primary-500);
+        stroke-dasharray: 604;
+        stroke-dashoffset: 603;
+        stroke: var(--color-primary-600);
 
         .step-2 & {
             stroke-dashoffset: 0;
@@ -1224,9 +1224,9 @@ p {
     }
 
     .circle-3 {
-        stroke-dasharray: 893;
-        stroke-dashoffset: 892;
-        stroke: var(--color-primary-400);
+        stroke-dasharray: 692;
+        stroke-dashoffset: 691;
+        stroke: var(--color-primary-500);
 
         .step-3 & {
             stroke-dashoffset: 0;
@@ -1234,11 +1234,21 @@ p {
     }
 
     .circle-4 {
-        stroke-dasharray: 1095;
-        stroke-dashoffset: 1093;
-        stroke: var(--color-primary-300);
+        stroke-dasharray: 1060;
+        stroke-dashoffset: 1059;
+        stroke: var(--color-primary-400);
 
         .step-4 & {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    .circle-5 {
+        stroke-dasharray: 1160;
+        stroke-dashoffset: 1159;
+        stroke: var(--color-primary-300);
+
+        .step-5 & {
             stroke-dashoffset: 0;
         }
     }
@@ -1265,6 +1275,10 @@ p {
         .circle-4 {
             transition-delay: .9s;
         }
+
+        .circle-5 {
+            transition-delay: 1.2s;
+        }
     }
 }
 
@@ -1273,7 +1287,8 @@ p {
     .step-1 .circle-1,
     .step-2 .circle-2,
     .step-3 .circle-3,
-    .step-4 .circle-4 {
+    .step-4 .circle-4,
+    .step-5 .circle-5 {
         stroke-dashoffset: 0;
     }
 }
@@ -1340,18 +1355,22 @@ p {
     }
 
     .counter-1 {
-        background-color: var(--color-primary-600);
+        background-color: var(--color-primary-700);
     }
 
     .counter-2 {
-        background-color: var(--color-primary-500);
+        background-color: var(--color-primary-600);
     }
 
     .counter-3 {
-        background-color: var(--color-primary-400);
+        background-color: var(--color-primary-500);
     }
 
     .counter-4 {
+        background-color: var(--color-primary-400);
+    }
+
+    .counter-5 {
         background-color: var(--color-primary-300);
     }
 
