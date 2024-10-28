@@ -1002,6 +1002,7 @@ p {
     border-radius: 50%;
     transition: background-color .3s ease-out;
     cursor: pointer;
+    pointer-events: none;
 
     @media (min-width: 600px) {
         width: 5%;
@@ -1507,7 +1508,6 @@ form {
     textarea {
         border-radius: 2.5rem;
         -webkit-appearance: none;
-        border: 0;
         transition: all .3s ease-out;
         outline: 0px solid rgb(125,197,216, 0.8);
         border: 1px solid rgba(90,135,147, .25);
@@ -1526,7 +1526,7 @@ form {
     }
 
     input:placeholder-shown + label,
-    textarea:placeholder-shown + label{
+    textarea:placeholder-shown + label {
         font-size: 1.125rem;
         top: 50%;
         transform: translateY(-50%);
@@ -1541,14 +1541,16 @@ form {
     }
 
     textarea {
-        height: 180px;
         display: block;
     }
 
-    textarea:placeholder-shown {
-        height: 80px;
+
+    textarea:focus {
+        height: 180px;
     }
 }
+
+
 
 button,
 input.button,
