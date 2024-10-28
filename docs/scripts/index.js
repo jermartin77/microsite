@@ -41,7 +41,7 @@
     // refresh all the animations because we caused a layout shift
     setTimeout(() => {
       ScrollTrigger.update();
-    }, 500);
+    }, 1000);
   }
 
   // Function to check localStorage and set the body class on page load
@@ -79,7 +79,6 @@
 
   const langLinks = document.querySelectorAll('.lang-link');
 
-
   langLinks.forEach(link => {
     link.addEventListener('click', function (event) {
       event.preventDefault();
@@ -104,21 +103,43 @@
     });
   });
 
+  // functionality for controling the click behaviour of the down arrow.
+  const downArrowPosition = document.getElementById('down-arrow-position');
+
+  let arrowStep = 0;
+  let introOffset = 0;
+
+  downArrowPosition.addEventListener('click',  (event) => {
+    if(arrowStep === 0) {
+      introOffset = document.getElementById('better-together').offsetTop;
+    } else if (arrowStep === 1) {
+      introOffset = document.getElementById('statement').offsetTop;
+      // remove the snap because it's preventing from scrolling down
+      document.documentElement.classList.remove('snap');
+    }
+
+    window.scrollTo({
+      top: introOffset,
+      behavior: 'smooth'
+    })
+  });
+
   // intersection observer that toggles the navigation
   const intro = document.getElementById('intro-section');
   const navigation = document.getElementById('navigation');
 
   const introObserver = new IntersectionObserver(([entry]) => {
     if (entry.isIntersecting) {
-      navigation.classList.add('nav-hidden');
+      document.body.classList.add("nav-hidden");
       document.documentElement.classList.add('snap')
     } else {
-      navigation.classList.remove('nav-hidden');
+      document.body.classList.remove("nav-hidden");
       document.documentElement.classList.remove('snap')
     }
   });
 
   introObserver.observe(intro);
+
 
   // Video actions
   const introVideo = document.getElementById('intro-video');
@@ -135,7 +156,6 @@
 
     playIcon.classList.add('hidden');
     if (introVideo.paused) {
-      console.log('got here');
       introVideo.controls = true;
       setTimeout(()=> {
         introVideo.play();
@@ -166,8 +186,11 @@
       trigger: '#intro-section',
       start: "top top",
       end: "bottom 20%",
-      scrub: 1,
-      markers: false
+      scrub: .5,
+      markers: false,
+      onEnterBack: () => {
+        arrowStep = 0;
+      },
     }
   });
 
@@ -183,7 +206,13 @@
       start: "top 5%",
       end: "bottom 15%",
       toggleClass: "wordmark-active",
-      scrub: 1,
+      onEnter: () => {
+        arrowStep = 1;
+      },
+      onEnterBack: () => {
+        arrowStep = 1;
+      },
+      scrub: .5,
       markers: false,
     }
   });
@@ -264,8 +293,6 @@ const $sizzleCarousel = document.getElementById('sizzle-carousel');
       sizzleCarouselAnimation.kill();
     }
     if (windowWidth > windowHeight) {
-      console.log('landscape')
-
       $sizzleCarousel.scrollLeft = 0;
       // landscape mode
       sizzleCarouselAnimation = new gsap.timeline({
@@ -284,8 +311,6 @@ const $sizzleCarousel = document.getElementById('sizzle-carousel');
       });
 
     } else {
-      console.log('portrait')
-
       const $sizzleCarousel = document.getElementById('sizzle-carousel');
 
       $sizzleCarousel.scrollLeft = 400;
@@ -359,8 +384,6 @@ const $sizzleCarousel = document.getElementById('sizzle-carousel');
     })
   });
 
-
-
   // a reusable animation for fade/sliding in cards
   const $slideInCards = document.querySelectorAll(".slide-in-card");
 
@@ -382,12 +405,3 @@ const $sizzleCarousel = document.getElementById('sizzle-carousel');
     });
   });
 })();
-
-
-
-
-
-
-
-
-

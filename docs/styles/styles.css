@@ -32,7 +32,7 @@
 
     --linear-gradient: linear-gradient(142deg, rgba(42,84,98,1) 0%, rgba(17,54,65,1) 50%, rgba(7,29,36,1) 100%);
 
-    --transparent-dark: rgba(4,16,20, .5);
+    --transparent-dark: rgba(4,16,20, .6);
     --transparent-dark-hover: rgba(4,16,20, .8);
     --transparent-light: rgba(90,135,147, .3);
     --blur-radius: 5px;
@@ -367,7 +367,7 @@ p {
     transition: transform .3s ease-out;
 
 
-    &.nav-hidden {
+    .nav-hidden & {
         transform: translateY(calc(-100% - 1rem));
      }
 }
@@ -562,6 +562,72 @@ p {
     .o2-path:nth-child(10) {
         transition-delay: .9s;
     }
+}
+
+
+
+
+.down-arrow-position {
+    position: fixed;
+    bottom: 5vh;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4px;
+    z-index: var(--z-index-header);
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, 50%);
+    cursor: pointer;
+    background-color: rgb(9,38,45, 5);
+    transition: all .5s ease-out;
+    pointer-events: none;
+
+    @media (min-width: 1000px) {
+        width: 60px;
+        height: 60px;
+    }
+
+    &:hover {
+        background-color: rgb(17,54,65, .7);
+        .down-arrow {
+            animation: none;
+        }
+    }
+
+    .nav-hidden & {
+        pointer-events: all;
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+
+
+@keyframes arrowPulse {
+    0% {
+        opacity: .5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: .5;
+    }
+}
+
+.down-arrow {
+    fill: none;
+    width: 50%;
+    stroke: var(--color-white);
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: opacity .3s ease-out;
+    animation: arrowPulse 3s infinite;
 }
 
 .better-together-wrapper {
@@ -1197,7 +1263,7 @@ p {
     path {
         fill: transparent;
         stroke: var(--color-primary-200);
-        stroke-width: 44;
+        stroke-width: 38;
         stroke-linecap: round;
         transition: stroke-dashoffset 1s ease-out;
     }
