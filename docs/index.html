@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="styles/normalize.css">
   <link rel="stylesheet" href="styles/styles.css">
 </head>
-<body class="lang-en">
-<header id="navigation" class="navigation nav-hidden transparent-blur">
+<body class="lang-en nav-hidden">
+<header id="navigation" class="navigation transparent-blur">
   <div class="logos">
     <picture class="logo">
       <source srcset="images/o2-logo.svg" media="(min-width: 800px)">
@@ -42,7 +42,12 @@
   <div class="lights light-4"></div>
   <div class="lights light-5"></div>
 </section>
-<section id="intro-section" class="intro">
+<div id="down-arrow-position" class="down-arrow-position transparent-blur">
+  <svg id="down-arrow" class="down-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 36">
+    <polyline class="b" points="5 4.5 32 31.5 59 4.5"/>
+  </svg>
+</div>
+<section id="intro-section" class="intro intro-offset">
   <div class="intro-wrapper">
   <div id="intro-animation" class="intro-animation">
     <svg id="intro-o2" class="intro-o2" aria-label="O2 Commerce" data-name="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310.57 36.37">
@@ -81,6 +86,7 @@
 
 
   </div>
+
   </div>
 </section>
 <section id="better-together" class="better-together">
@@ -141,7 +147,7 @@
       </svg>
   </div>
 </section>
-<section class="statement content container stacked-component">
+<section id="statement" class="statement content container stacked-component">
   <h2 id="position-statement" class="position-statement">
     <span class="en">O2 Commerce and ZaneRay are merging to form an industry-leading digital agency. By uniting O2’s data-driven expertise with ZaneRay’s renowned expertise in experience design, we’ll deliver innovative digital commerce solutions for forward-thinking organizations.</span>
     <span class="fr">Les agences eCommerce, O2 Commerce et ZaneRay, unissent leurs forces pour créer une agence de commerce numérique de premier plan en Amérique du Nord. En combinant l'expertise technique de O2 avec l'excellence de ZaneRay en conception d'expérience UX/UI, nous serons en mesure de réaliser des projets eCommerce encore plus innovants, répondant aux besoins des organisations visionnaires et tournées vers l'avenir.</span>
