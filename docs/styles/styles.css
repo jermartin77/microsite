@@ -4,7 +4,7 @@
     --font-family-body: "Poppins", sans-serif;
     --stacked-component-sm: 64px;
     --stacked-component: 96px;
-    --horizontal-gap: clamp(1rem, 2vw, 3rem);
+    --horizontal-gap: clamp(1.5rem, 4vw, 5rem);
     --vertical-gap: clamp(.1rem, 2vw, 3rem);
     --font-size-h3: clamp(1.25rem, 1.66vw, 2rem);
     --font-size-h4: 18px;
@@ -1260,7 +1260,8 @@ p {
         .circle-1,
         .circle-2,
         .circle-3,
-        .circle-4 {
+        .circle-4,
+        .circle-5 {
             stroke-dashoffset: 0;
         }
 
@@ -1299,7 +1300,7 @@ p {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
     grid-column: 2;
     grid-row: 2;
     list-style-position: inside;
@@ -1390,7 +1391,7 @@ p {
 
 .results {
     display: flex;
-    gap: var(--container-padding);
+    gap: var(--horizontal-gap);
     flex-direction: column;
 
     @media (min-width: 1000px) {
@@ -1450,7 +1451,7 @@ p {
 
 .contact.contact  {
     display: flex;
-    gap: var(--container-padding);
+    gap: var(--horizontal-gap);
     align-items: flex-start;
     flex-direction: column;
     padding-top: var(--stacked-component); /* overriding stacked component styles so the anchor nav works */
