@@ -1403,6 +1403,10 @@ p {
     display: flex;
     flex-wrap: wrap;
 
+    @media (min-width: 1200px) {
+        flex-wrap: nowrap;
+    }
+
     li {
         width: 33%;
         flex-shrink: 0;
@@ -1412,8 +1416,10 @@ p {
             width: 25%;
         }
 
-        @media (min-width: 900px) {
+        @media (min-width: 1200px) {
+            flex-wrap: nowrap;
             width: 20%;
+            flex-shrink: 1;
         }
     }
 
