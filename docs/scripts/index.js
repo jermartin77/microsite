@@ -4,7 +4,7 @@
 
   // setting a var for the window size if we need it
   let windowWidth = window.innerWidth; // Initial window width
-  let windowHeight = window.innerHeight; // Initial window width
+  let windowHeight = window.innerHeight; // Initial window height
   let resizeTimeout;
 
   window.addEventListener('resize', () => {
@@ -42,7 +42,6 @@
     setTimeout(() => {
       ScrollTrigger.update();
     }, 500);
-    // ScrollTrigger.refresh();
   }
 
   // Function to check localStorage and set the body class on page load
@@ -96,8 +95,6 @@
     });
   });
 
-
-
   document.addEventListener('DOMContentLoaded', function() {
     hbspt.forms.create({
       portalId: "44614467",
@@ -106,7 +103,6 @@
       onFormReady: bindHsForm
     });
   });
-
 
   // intersection observer that toggles the navigation
   const intro = document.getElementById('intro-section');
@@ -129,11 +125,6 @@
   const playIcon = document.getElementById('play-icon');
 
   let videoLoaded = false;
-
-  // function isVideoPlaying(video) {
-  //   return !video.paused && !video.ended && video.readyState > 2;
-  // }
-
 
   introVideo.addEventListener('click', function (event) {
     if (videoLoaded) {
