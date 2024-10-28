@@ -1002,6 +1002,7 @@ p {
     border-radius: 50%;
     transition: background-color .3s ease-out;
     cursor: pointer;
+    pointer-events: none;
 
     @media (min-width: 600px) {
         width: 5%;

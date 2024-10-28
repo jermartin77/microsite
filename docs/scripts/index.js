@@ -128,12 +128,25 @@
   const introVideo = document.getElementById('intro-video');
   const playIcon = document.getElementById('play-icon');
 
+  let videoLoaded = false;
+
+  // function isVideoPlaying(video) {
+  //   return !video.paused && !video.ended && video.readyState > 2;
+  // }
+
+
   introVideo.addEventListener('click', function (event) {
+    if (videoLoaded) {
+      return false;
+    }
+
+    videoLoaded = true;
+
     playIcon.classList.add('hidden');
     if (introVideo.paused) {
+      console.log('got here');
       introVideo.controls = true;
       setTimeout(()=> {
-
         introVideo.play();
       }, 50) // Show controls when playing
     }
@@ -143,6 +156,7 @@
   introVideo.addEventListener('ended', () => {
     playIcon.classList.remove('hidden')
     introVideo.controls = false;  // Hide controls after the video ends
+    videoLoaded = false;
     introVideo.load();  // This resets the video to the initial state and shows the poster
   });
 
@@ -303,7 +317,7 @@ const $sizzleCarousel = document.getElementById('sizzle-carousel');
   initSizzleCarousel();
 
 
-  // animate the video in
+  // animate the map in
   const mapAnimation = new gsap.timeline({
     scrollTrigger: {
       trigger: '#company',
