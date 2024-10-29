@@ -609,14 +609,23 @@ p {
 
 @keyframes arrowPulse {
     0% {
-        opacity: .5;
+        opacity: 0;
+        transform: translateY(-30%);
     }
-    50% {
+    55% {
         opacity: 1;
+        transform: translateY(0%);
+    }
+    65% {
+        opacity: 1;
+        transform: translateY(0%);
     }
     100% {
-        opacity: .5;
+        opacity: 0;
+        transform: translateY(30%);
     }
+
+
 }
 
 .down-arrow {
@@ -626,8 +635,9 @@ p {
     stroke-width: 6;
     stroke-linecap: round;
     stroke-linejoin: round;
-    transition: opacity .3s ease-out;
-    animation: arrowPulse 3s infinite;
+    transform: translateY(0%);
+    transition: all .3s ease-out;
+    animation: arrowPulse 2s infinite;
 }
 
 .better-together-wrapper {
@@ -966,7 +976,7 @@ p {
             width: 20%;
         }
 
-        @media (min-width: 1440px) {
+        @media (min-width: 1280px) {
             width: 16.66%;
         }
 
