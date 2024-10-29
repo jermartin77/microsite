@@ -315,8 +315,6 @@ const $sizzleCarousel = document.getElementById('sizzle-carousel');
 
       $sizzleCarousel.scrollLeft = 400;
 
-
-
       sizzleCarouselAnimation = new gsap.timeline({
         scrollTrigger: {
           trigger: '#sizzle-v2',
@@ -331,7 +329,6 @@ const $sizzleCarousel = document.getElementById('sizzle-carousel');
   }
 
   initSizzleCarousel();
-
 
   // animate the map in
   const mapAnimation = new gsap.timeline({
