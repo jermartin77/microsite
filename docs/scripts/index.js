@@ -8,21 +8,7 @@
   let resizeTimeout;
 
   window.addEventListener('resize', () => {
-    // Clear any existing timeout when resizing starts
-    clearTimeout(resizeTimeout);
-
-    // Set a timeout to update the window width after resizing is done
-    resizeTimeout = setTimeout(() => {
-      windowWidth = window.innerWidth;
-      windowHeight = window.innerHeight;
-      initSizzleCarousel();
-
-      // refreshing the stubborn ScrollTrigger.
-      setTimeout(() =>  {
-        ScrollTrigger.update();
-
-      }, 500);
-    }, 200);
+    resetApp();
   });
 
   // start the intro animation
@@ -33,15 +19,23 @@
 
   let lang = 'en';
 
+    // Reset app by scrolling to top and reloading
+    function resetApp() {
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'instant'
+        });
+        window.location.reload();
+      }, 100)
+    }
+
   // setting the language
   function setBodyClass(lang) {
     document.body.classList.remove('lang-en', 'lang-fr');
     document.body.classList.add('lang-' + lang);
     localStorage.setItem('lang', lang);
-    // refresh all the animations because we caused a layout shift
-    setTimeout(() => {
-      ScrollTrigger.update();
-    }, 1000);
   }
 
   // Function to check localStorage and set the body class on page load
@@ -401,4 +395,5 @@ const $sizzleCarousel = document.getElementById('sizzle-carousel');
       ease: "ease-out"
     });
   });
+
 })();

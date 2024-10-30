@@ -80,6 +80,7 @@ body {
     background: var(--color-primary-900);
     color: #fff;
     font-size: clamp(0.9375rem, 1.25vw, 1.25rem);
+    overflow-x: clip;
 }
 
 a {
@@ -1604,6 +1605,10 @@ form {
         width: 100%;
         color: #fff;
         height: 80px;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
 
         &:focus {
             background-color: var(--transparent-dark-hover);
