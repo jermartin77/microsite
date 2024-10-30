@@ -89,6 +89,15 @@
   });
 
   document.addEventListener('DOMContentLoaded', function() {
+    // On refresh if scrolled down, go back to top n refresh
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant'
+    });
+
+    ScrollTrigger.refresh();
+
     hbspt.forms.create({
       portalId: "44614467",
       formId: lang === 'en' ? enFormId : frFormId,
